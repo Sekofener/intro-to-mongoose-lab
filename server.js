@@ -1,7 +1,8 @@
-const prompt = require('prompt-sync')();
 const dotenv = require('dotenv');
 dotenv.config();
+
 const mongoose = require('mongoose');
+const prompt = require('prompt-sync')();
 
 const connect = async () => {
     await mongoose.connect(process.env.MONGODB_URI);
@@ -12,28 +13,34 @@ const connect = async () => {
     process.exit();
 };
 
-const runQueries = async () => {
-  console.log('Queries running.')
-    while(running === true) {
-        promptUser()
-        if(choice === "1") {
-            await createCustomer()
-        }
-        if(choice === "2") {
-            await getAllCustomers()
-        }
-        if(choice === "3") {
-            await updateCustomer()
-        }
-        if(choice === "4") {
-            await deleteCustomer()
-        }
-        if(choice === "5") {
-            await exit()
-        }
-    }
-};
+const menuOptionNum = prompt('Select a number option');
+lineBreak();
+menuOptionsHandler = (optionNum)
+        
+        const menuOptionsHandler = (optionNum) =>{
+            switch (optionNum) {
+            case '1':
+                console.log('1. Create a customer');
+                break;
+            case '2':
+                console.log('2. View all customer');
+                break;
+            case '3':
+                console.log('3. Update a customer ');
+                break;
+            case '4':
+                console.log('4. Delete a customer');
+            case '5':
+                console.log('Quitting...');
+             break;
+             default:
+             prompt("That option was not valid. Press 'ENTER' to return");   
+        linebreak();
+        menuOptionNum();
 
+        }
+        };
+    
 connect()
 console.log("Welcome to the CRM")
 const Customer = require('./models/customer.js');
